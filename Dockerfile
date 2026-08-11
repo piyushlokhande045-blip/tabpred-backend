@@ -23,6 +23,7 @@ COPY . .
 # --- Download the compressed model bundle from Google Drive at build time ---
 RUN mkdir -p ml_prediction_data
 RUN gdown "1MORnoTxf5YRuC1JfQbNcGmuyvpdwyeGU" -O ml_prediction_data/tabpred_tuned_bundle_compressed.pkl
+RUN cp ml_prediction_data/tabpred_tuned_bundle_compressed.pkl ml_prediction_data/tabpred_delta_typed_bundle.pkl
 RUN ls -la ml_prediction_data/
 RUN python3 -c "import os,sys; p='ml_prediction_data/tabpred_tuned_bundle_compressed.pkl'; s=os.path.getsize(p); print('Downloaded size:', s, 'bytes'); sys.exit(0 if s>1000000 else 1)"
 ENV PORT=10000
