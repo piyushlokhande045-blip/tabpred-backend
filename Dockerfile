@@ -23,7 +23,7 @@ COPY . .
 
 # --- Download the compressed model bundle from Google Drive at build time ---
 RUN mkdir -p ml_prediction_data && \
-    gdown --id 1MORnoTxf5YRuC1JfQbNcGmuyvpdwyeGU \
+    gdown 1MORnoTxf5YRuC1JfQbNcGmuyvpdwyeGU \
     -O ml_prediction_data/tabpred_tuned_bundle_compressed.pkl
 
 ENV PORT=10000
