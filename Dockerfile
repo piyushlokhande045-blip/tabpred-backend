@@ -16,14 +16,13 @@ RUN wget -q https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt gdown
-
+RUN pip install --no-cache-dir -r requirements.txt "gdown>=5.1.0"
 # App code (small files only — the model is fetched separately below)
 COPY . .
 
 # --- Download the compressed model bundle from Google Drive at build time ---
 RUN mkdir -p ml_prediction_data
-RUN gdown --fuzzy "https://drive.google.com/uc?id=1MORnoTxf5YRuC1JfQbNcGmuyvpdwyeGU" -O ml_prediction_data/tabpred_tuned_bundle_compressed.pkl
+RUN gdown "1MORnoTxf5YRuC1JfQbNcGmuyvpdwyeGU" -O ml_prediction_data/tabpred_tuned_bundle_compressed.pkl
 RUN ls -la ml_prediction_data/
 RUN python3 -c "import os,sys; p='ml_prediction_data/tabpred_tuned_bundle_compressed.pkl'; s=os.path.getsize(p); print('Downloaded size:', s, 'bytes'); sys.exit(0 if s>1000000 else 1)"
 ENV PORT=10000
