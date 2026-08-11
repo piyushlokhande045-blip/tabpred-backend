@@ -22,11 +22,10 @@ RUN pip install --no-cache-dir -r requirements.txt gdown
 COPY . .
 
 # --- Download the compressed model bundle from Google Drive at build time ---
-RUN mkdir -p ml_prediction_data && \
-    gdown --fuzzy "https://drive.google.com/uc?id=1MORnoTxf5YRuC1JfQbNcGmuyvpdwyeGU" \
-    -O ml_prediction_data/tabpred_tuned_bundle_compressed.pkl && \
-    ls -la ml_prediction_data/ && \
-    python -c "import os; size=os.path.getsize('ml_prediction_data/tabpred_tuned_bundle_compressed.pkl'); print(f'Downloaded file size: {size} bytes'); assert size > 1000000, 'File too small — download likely failed!'"
+RUN mkdir -p ml_prediction_data
+RUN gdown --fuzzy "https://drive.google.com/uc?id=1MORnoTxf5YRuC1JfQbNcGmuyvpdwyeGU" -O ml_prediction_data/tabpred_tuned_bundle_compressed.pkl
+RUN ls -la ml_prediction_data/
+RUN python3 -c "import os,sys; p='ml_prediction_data/tabpred_tuned_bundle_compressed.pkl'; s=os.path.getsize(p); print('Downloaded size:', s, 'bytes'); sys.exit(0 if s>1000000 else 1)"
 ENV PORT=10000
 EXPOSE 10000
 
