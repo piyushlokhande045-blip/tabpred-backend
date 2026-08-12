@@ -31,7 +31,7 @@ def add_cors_headers(response):
     # Allows the standalone TABPred frontend (opened as a local file, or
     # served from a different port) to call this API from the browser.
     response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Content-Type, ngrok-skip-browser-warning"
     return response
 
