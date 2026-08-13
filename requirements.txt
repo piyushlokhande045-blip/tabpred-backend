@@ -1,1 +1,14 @@
 streamlit>=1.28.0
+flask
+rdkit
+mordred
+numpy>=2.0
+pandas
+joblib
+scipy
+scikit-learn
+meeko
+gemmi
+xgboost
+lightgbm
+catboost
