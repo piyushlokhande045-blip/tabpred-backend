@@ -1,13 +1,1 @@
-flask
-rdkit
-mordred
-numpy>=2.0
-pandas
-joblib
-scipy
-scikit-learn
-meeko
-gemmi
-xgboost
-lightgbm
-catboost
+streamlit>=1.28.0
