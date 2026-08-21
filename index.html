@@ -507,8 +507,8 @@ function analyzeSmiles(smiles){
 }
 
 async function fetchAffinity(smiles){
-  const url = `${API_BASE}/api/predict?smiles=${encodeURIComponent(smiles)}`;
-  const res = await fetch(url, { headers: { 'ngrok-skip-browser-warning': 'true' } });
+  const url = `${API_BASE}/api/predict?smiles=${encodeURIComponent(smiles)}&ngrok-skip-browser-warning=true`;
+  const res = await fetch(url);
   const data = await res.json();
   if(!res.ok || data.error){
     const err = new Error(data.error || `Server returned ${res.status}`);
